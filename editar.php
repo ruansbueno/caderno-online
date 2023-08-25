@@ -40,28 +40,6 @@
         <textarea class="tinymce" name="anotacao" placeholder="Sua anotação"><?php echo $anotacao['anotacao']; ?></textarea>
         <input type="submit" value="Salvar" name="enviar">
     </form>
-
-    <section class="anotacoes">
-        <h2>Anotações anteriores:</h2>
-        <ul>
-            <?php
-            	$sql = $pdo->prepare("SELECT id,titulo_anotacao,id_user FROM `anotacoes` WHERE `id_user` = ?");
-    		$sql->execute(array($_SESSION['login']));
-
-    		$anotacao = $sql->fetchAll(PDO::FETCH_ASSOC);
-                if(count($anotacao) >= 1){
-                    foreach ($anotacao as $key => $value) {
-                        echo '<li>
-                                 <a href="anotacao-'.$value['id'].'">'.$value['titulo_anotacao'].'</a> | <a href="delete-'.$value['id'].'">Excluir</a>
-                             </li>';
-                    }
-                }else{
-                    echo '<h3>Você ainda não tem anotações.</h3>';
-                }
-
-            ?>
-        </ul>
-    </section>
 </main>
 </body>
 </html>

@@ -39,8 +39,9 @@
                 if(count($anotacao) >= 1){
                     foreach ($anotacao as $key => $value) {
                         echo '<li>
-                                 <a href="anotacao-'.$value['id'].'">'.$value['titulo_anotacao'].'</a> | <a href="delete-'.$value['id'].'">Excluir</a>
-                             </li>';
+                                  <a href="anotacao-'.$value['id'].'">'.$value['titulo_anotacao'].'</a>
+                                  <a href="delete-'.$value['id'].'" class="delete"><i class="fa-regular fa-trash-can"></i></a>
+                              </li>';
                     }
                 }else{
                     echo '<h3>Você ainda não tem anotações.</h3>';
