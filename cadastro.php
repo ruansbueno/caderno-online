@@ -20,10 +20,12 @@
             if($sql->execute(array(htmlspecialchars($_POST['nome']),password_hash($_POST['senha'], PASSWORD_DEFAULT)))){
                 echo '<script>alert("Cadastrado com sucesso!")</script>';
                 echo '<script>window.location = "'.PATH.'"</script>';
+                die();
             }
         }else{
             echo '<script>alert("Esse usuário já existe!")</script>';
             echo '<script>window.location = "'.PATH.'cadastro"</script>';
+            die();
         }
     }
 ?>

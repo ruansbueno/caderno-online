@@ -10,9 +10,8 @@
           $sql = $pdo->prepare('UPDATE `anotacoes` SET `titulo_anotacao`= ?, `anotacao` = ? WHERE `id` = ? AND `id_user` = ?');
 
             if($sql->execute(array($_POST['nome'],$_POST['anotacao'],$id,$_SESSION['login']))){
-                echo '<script>alert("Salvo com sucesso!")</script>';
                 echo '<script>window.location = "'.PATH.'"</script>';
-
+                die();
             }else{
                 echo '<script>alert("Erro")</script>';
             }  
@@ -28,7 +27,8 @@
 
     if($anotacao == []){
         echo '<script>alert("Você não tem autorização para editar essa anotação!")</script>';
-         echo '<script>window.location = "'.PATH.'"</script>';
+        echo '<script>window.location = "'.PATH.'"</script>';
+        die();
     }else{
 ?>
 

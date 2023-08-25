@@ -1,17 +1,25 @@
 <?php
     $pdo = MySQL::connect();
 
-    $id = explode('-', $_GET['url'])[1];
+    $id = isset(explode('-',$_GET['url'])[1]) ? explode('-',$_GET['url'])[1] : '';
+    if($id == ''){
+        echo '<script>window.location = "'.PATH.'"</script>';
+        die();
+    }else{
+        $sql = $pdo->prepare('SELECT * FROM `anotacoes` WHERE `id` = ?');
 
-    $sql = $pdo->prepare('SELECT * FROM `anotacoes` WHERE `id` = ?');
+        $sql->execute(array($id));
 
-    $sql->execute(array($id));
+        $anotacao = $sql->fetch(PDO::FETCH_ASSOC);
 
-    $anotacao = $sql->fetch(PDO::FETCH_ASSOC);
-
-    if($anotacao['id_user'] != $_SESSION['login']){
-        echo '<script>alert("Você não tem autorização para ler essa anotação!")</script>';
-         echo '<script>window.location = "'.PATH.'"</script>';
+        if($anotacao == []){
+            echo '<script>window.location = "'.PATH.'"</script>';
+            die();
+        }else if($anotacao['id_user'] != $_SESSION['login']){
+            echo '<script>alert("Você não tem autorização para ler essa anotação!")</script>';
+            echo '<script>window.location = "'.PATH.'"</script>';
+            die();
+        }
     }
 
     

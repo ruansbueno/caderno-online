@@ -8,6 +8,7 @@
             $sql = $pdo->prepare('INSERT INTO `anotacoes` VALUES(null, ?,?,?)');
             if($sql->execute(array($_POST['nome'],$_POST['anotacao'],$_SESSION['login']))){
                 echo '<script>window.location = "'.PATH.'"</script>';
+                die();
             }else{
                 echo '<script>alert("Erro")</script>';
             }

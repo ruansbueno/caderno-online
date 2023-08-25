@@ -20,13 +20,16 @@
             if(password_verify($_POST['senha'], $user[0]['senha'])){
                 $_SESSION['login'] = $user[0]['id'];
                 echo '<script>window.location = "'.PATH.'"</script>';
+                die();
             }else{
                 echo '<script>alert("Usuário e/ou senha incorretos")</script>';
                 echo '<script>window.location = "'.PATH.'"</script>';
+                die();
             }
         }else{
             echo '<script>alert("Usuário e/ou senha incorretos")</script>';
             echo '<script>window.location = "'.PATH.'"</script>';
+            die();
         }
     }
 ?>
