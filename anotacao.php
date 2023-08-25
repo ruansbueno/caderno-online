@@ -19,9 +19,18 @@
 ?>
 
     <main>
-        <section class="anotacoes">
-            <h2><?php echo $anotacao['titulo_anotacao']; ?></h2>
-            <a class="edit" href="editar-<?php echo $anotacao['id']; ?>">Editar</a>
+        <section class="anotacoes" style=" 
+            -webkit-box-shadow: 0px 0px 26px -10px rgba(0,0,0,0.66);
+            -moz-box-shadow: 0px 0px 26px -10px rgba(0,0,0,0.66);
+            box-shadow: 0px 0px 26px -10px rgba(0,0,0,0.66);
+            padding: 20px;
+            border-radius: 15px;"
+            >
+            <h2 style="font-weight:600"><?php echo $anotacao['titulo_anotacao']; ?></h2>
+            <div class="tools">
+                <a class="edit" href="editar-<?php echo $anotacao['id']; ?>">Editar</a>
+                <a class="delete" href="delete-<?php echo $anotacao['id']; ?>">Apagar</a>
+            </div>
             <p><?php echo $anotacao['anotacao']; ?></p>
             <a class="button" href="<?php echo PATH; ?>">Voltar à Home</a>
         </section>

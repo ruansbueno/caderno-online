@@ -3,15 +3,21 @@
 
     $id = explode('-', $_GET['url'])[1];
     if(isset($_POST['enviar'])){
-        $sql = $pdo->prepare('UPDATE `anotacoes` SET `titulo_anotacao`= ?, `anotacao` = ? WHERE `id` = ? AND `id_user` = ?');
 
-        if($sql->execute(array(htmlspecialchars($_POST['nome']),htmlspecialchars($_POST['anotacao']),$id,$_SESSION['login']))){
-            echo '<script>alert("Salvo com sucesso!")</script>';
-            echo '<script>window.location = "'.PATH.'"</script>';
-
+        if($_POST['anotacao'] == ''){
+            echo '<script>alert("Anotação vazia!")</script>'; 
         }else{
-            echo '<script>alert("Erro")</script>';
+          $sql = $pdo->prepare('UPDATE `anotacoes` SET `titulo_anotacao`= ?, `anotacao` = ? WHERE `id` = ? AND `id_user` = ?');
+
+            if($sql->execute(array($_POST['nome'],$_POST['anotacao'],$id,$_SESSION['login']))){
+                echo '<script>alert("Salvo com sucesso!")</script>';
+                echo '<script>window.location = "'.PATH.'"</script>';
+
+            }else{
+                echo '<script>alert("Erro")</script>';
+            }  
         }
+        
     }
 
 
@@ -31,7 +37,7 @@
 <main>
     <form method="post">
         <input required type="text" value="<?php echo $anotacao['titulo_anotacao'] ?>" name="nome" placeholder="Título da sua anotação">
-        <textarea name="anotacao" placeholder="Sua anotação" required><?php echo $anotacao['anotacao']; ?></textarea>
+        <textarea class="tinymce" name="anotacao" placeholder="Sua anotação"><?php echo $anotacao['anotacao']; ?></textarea>
         <input type="submit" value="Salvar" name="enviar">
     </form>
 
