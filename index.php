@@ -19,9 +19,9 @@
 </head>
 <body>
     <header>
-        <?php if(isset($_SESSION['login'])){ ?>
+        <?php if(isset($_SESSION['login'])): ?>
             <a href="sair" class="logout">Sair</a>
-        <?php } ?>
+        <?php endif; ?>
         <h1>Caderno</h1>
     </header>
 

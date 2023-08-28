@@ -34,13 +34,13 @@
             padding: 20px;
             border-radius: 15px;"
             >
-            <h2 style="font-weight:600"><?php echo $anotacao['titulo_anotacao']; ?></h2>
+            <h2 style="font-weight:600"><?= $anotacao['titulo_anotacao']; ?></h2>
             <div class="tools">
-                <a class="edit" href="editar-<?php echo $anotacao['id']; ?>"><i class="fa-solid fa-pencil"></i> &nbsp;&nbsp;Editar</a>
-                <a class="delete" href="delete-<?php echo $anotacao['id']; ?>"><i class="fa-regular fa-trash-can"></i></a>
+                <a class="edit" href="editar-<?= $anotacao['id']; ?>"><i class="fa-solid fa-pencil"></i> &nbsp;&nbsp;Editar</a>
+                <a class="delete" href="delete-<?= $anotacao['id']; ?>"><i class="fa-regular fa-trash-can"></i></a>
             </div>
-            <p><?php echo $anotacao['anotacao']; ?></p>
-            <a class="button" href="<?php echo PATH; ?>">Voltar à Home</a>
+            <p><?= $anotacao['anotacao']; ?></p>
+            <a class="button" href="<?= echo PATH; ?>">Voltar à Home</a>
         </section>
     <main>
 

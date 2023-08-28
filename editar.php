@@ -36,8 +36,8 @@
 
 <main>
     <form method="post">
-        <input required type="text" value="<?php echo $anotacao['titulo_anotacao'] ?>" name="nome" placeholder="Título da sua anotação">
-        <textarea class="tinymce" name="anotacao" placeholder="Sua anotação"><?php echo $anotacao['anotacao']; ?></textarea>
+        <input required type="text" value="<?= echo $anotacao['titulo_anotacao'] ?>" name="nome" placeholder="Título da sua anotação">
+        <textarea class="tinymce" name="anotacao" placeholder="Sua anotação"><?= $anotacao['anotacao']; ?></textarea>
         <input type="submit" value="Salvar" name="enviar">
     </form>
 </main>
