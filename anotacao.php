@@ -40,7 +40,7 @@
                 <a class="delete" href="delete-<?= $anotacao['id']; ?>"><i class="fa-regular fa-trash-can"></i></a>
             </div>
             <p><?= $anotacao['anotacao']; ?></p>
-            <a class="button" href="<?= echo PATH; ?>">Voltar à Home</a>
+            <a class="button" href="<?= PATH; ?>">Voltar à Home</a>
         </section>
     <main>
 
