@@ -12,6 +12,7 @@
 <?php 
     if(isset($_POST['enviar'])){
         $pdo = MySQL::connect();
+        $pdo->exec("LOCK TABLES `users` READ");
         $sql = $pdo->prepare("SELECT * FROM `users` WHERE `nome` = ?");
         $sql->execute(array(htmlspecialchars($_POST['nome'])));
         $user = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -31,5 +32,7 @@
             echo '<script>window.location = "'.PATH.'"</script>';
             die();
         }
+
+        $pdo->exec("UNLOCK TABLES");
     }
 ?>

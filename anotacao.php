@@ -1,16 +1,19 @@
 <?php
-    $pdo = MySQL::connect();
 
     $id = isset(explode('-',$_GET['url'])[1]) ? explode('-',$_GET['url'])[1] : '';
     if($id == ''){
         echo '<script>window.location = "'.PATH.'"</script>';
         die();
     }else{
+        $pdo = MySQL::connect();
+
+        $pdo->exec("LOCK TABLES `anotacoes` READ");
         $sql = $pdo->prepare('SELECT * FROM `anotacoes` WHERE `id` = ?');
 
         $sql->execute(array($id));
 
         $anotacao = $sql->fetch(PDO::FETCH_ASSOC);
+        $pdo->exec("UNLOCK TABLES");
 
         if($anotacao == []){
             echo '<script>window.location = "'.PATH.'"</script>';

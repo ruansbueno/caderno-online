@@ -1,10 +1,13 @@
 <?php
-    $pdo = MySQL::connect();
 
     if(isset($_POST['enviar'])){
         if($_POST['anotacao'] == ''){
-            echo '<script>alert("Anotação vazia!")</script>'; 
+            echo '<script>alert("Anotação vazia!")</script>';
         }else{
+            $pdo = MySQL::connect();
+
+            $pdo->exec("LOCK TABLES `anotacoes` WRITE");
+
             $sql = $pdo->prepare('INSERT INTO `anotacoes` VALUES(null, ?,?,?)');
             if($sql->execute(array($_POST['nome'],$_POST['anotacao'],$_SESSION['login']))){
                 echo '<script>window.location = "'.PATH.'"</script>';
@@ -12,15 +15,20 @@
             }else{
                 echo '<script>alert("Erro")</script>';
             }
+            $pdo->exec("UNLOCK TABLES");
+
         }
         
     }
 
+    $pdo->exec("LOCK TABLES `anotacoes` READ");
 
     $sql = $pdo->prepare("SELECT id,titulo_anotacao,id_user FROM `anotacoes` WHERE `id_user` = ?");
     $sql->execute(array($_SESSION['login']));
 
     $anotacao = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+    $pdo->exec("UNLOCK TABLES");
 ?>
 
 
