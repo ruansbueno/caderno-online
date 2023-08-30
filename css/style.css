@@ -39,7 +39,7 @@ input,textarea{
     padding: 5px;
     font-size:15px;
     border-radius: 5px;
-    border: 1px solid #aaa;
+    border: 2px solid #eee;
 }
 
 
@@ -57,7 +57,7 @@ input[type=submit]{
     color:#fff;
     transition: .4s;
     background-color: #06c;
-
+    border:none;
 }
 
 input[type=submit]:hover{
